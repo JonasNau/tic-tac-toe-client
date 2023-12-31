@@ -1,0 +1,297 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.horizontal-center-row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.horizontal-center-column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Look */
+
+/* Position mobile */
+#ticTacToe {
+  position: relative;
+  /* display: flex;
+  flex-direction: column; */
+  width: 100%;
+  background-color: white;
+}
+
+#ticTacToe #menu {
+  position: relative;
+}
+
+#ticTacToe #menu .createSection {
+  display: block;
+  margin: auto;
+  width: max-content;
+}
+
+#ticTacToe #menu .createSection button {
+  padding: 5px 0 5px 0;
+  margin: 0 5px;
+}
+
+#ticTacToe #menu #availableGames #joinGame {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0 10px 0;
+}
+
+#ticTacToe #menu #availableGames #joinGameList ul {
+  width: 75%;
+}
+
+#ticTacToe #menu #availableGames ul {
+  height: 150px;
+  background-color: rgba(128, 128, 128, 0.027);
+  list-style-type: "\21AA";
+  padding-left: 15px;
+  overflow-y: scroll;
+}
+
+#ticTacToe #menu #availableGames ul li {
+  line-height: 1.5rem;
+}
+
+#ticTacToe #info {
+  font-size: 1.7rem;
+  margin-bottom: 15px;
+}
+
+#ticTacToe #info .text {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 20%;
+  background-color: rgba(128, 128, 128, 0.096);
+}
+
+/* board */
+#ticTacToe #board {
+  height: 90vw;
+  width: 90vw;
+  margin: auto;
+
+  background-color: white;
+  border: 1px dotted black;
+  display: grid;
+  grid-template-rows: calc(90vw / 3) calc(90vw / 3) calc(90vw / 3);
+  grid-template-columns: calc(90vw / 3) calc(90vw / 3) calc(90vw / 3);
+}
+
+#ticTacToe #board.forbidden {
+  opacity: 0.5;
+}
+
+/* Board x */
+#ticTacToe #board .cell.x,
+#ticTacToe #board .cell.circle,
+#ticTacToe #board.forbidden .cell {
+  cursor: not-allowed;
+}
+
+/* x */
+#ticTacToe #board .cell.x::before {
+  content: "\2716";
+  display: block;
+  font-size: calc(90vw / 4);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* circle */
+#ticTacToe #board .cell.circle::before {
+  content: "\25EF";
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: calc(90vw / 4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#ticTacToe #board .cell {
+  border: 1px solid red;
+  cursor: pointer;
+  position: relative;
+}
+
+/* #hover# */
+/* Board is x */
+#ticTacToe #board.x .cell:not(.x):not(.circle):hover::after {
+  content: "\2716";
+  display: block;
+  font-size: calc(90vw / 4);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;
+}
+
+/* Board is circle */
+#ticTacToe #board.circle .cell:not(.x):not(.circle):hover::after {
+  content: "\25EF";
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: calc(90vw / 4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;
+}
+
+/* Message */
+.messageBox.open {
+  z-index: 1000;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.096);
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.messageBox.open ~ * {
+  filter: blur(1rem);
+}
+
+.messageBox .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border: none;
+}
+
+.messageBox .close:hover {
+  background-color: red;
+}
+
+.messageBox .close:active {
+  background-color: darkred;
+}
+
+.messageBox .content {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 20px 0 20px 0;
+}
+
+.messageBox[data-type="ok"] .ok {
+  padding: 10px;
+  margin: 10px;
+  font-size: 2rem;
+}
+
+.messageBox[data-type="yes_no"] .usersFeedback * {
+  padding: 10px;
+  margin: 10px;
+  font-size: 2rem;
+}
+
+.messageBox[data-type="yes_no"] .usersFeedback .yes {
+  background-color: lightgreen;
+}
+.messageBox[data-type="yes_no"] .usersFeedback .yes:hover {
+  background-color: green;
+}
+.messageBox[data-type="yes_no"] .usersFeedback .yes:active {
+  background-color: darkgreen;
+}
+
+.messageBox[data-type="yes_no"] .usersFeedback .no {
+    background-color: lightcoral;
+  }
+  .messageBox[data-type="yes_no"] .usersFeedback .no:hover {
+    background-color: red;
+  }
+  .messageBox[data-type="yes_no"] .usersFeedback .no:active {
+    background-color: darkred;
+  }
+
+/* #### Desktops #### */
+@media screen and (min-width: 1024px) {
+  #ticTacToe #board {
+    height: 40vw;
+    width: 40vw;
+    grid-template-rows: calc(40vw / 3) calc(40vw / 3) calc(40vw / 3);
+    grid-template-columns: calc(40vw / 3) calc(40vw / 3) calc(40vw / 3);
+  }
+
+  #ticTacToe #board .cell.x::before {
+    font-size: calc(40vw / 4);
+  }
+
+  /* circle */
+  #ticTacToe #board .cell.circle::before {
+    font-size: calc(40vw / 4);
+  }
+
+  #ticTacToe #board .cell {
+    border: 1px solid red;
+    cursor: pointer;
+    position: relative;
+  }
+
+  /* #hover# */
+  /* Board is x */
+  #ticTacToe #board.x .cell:not(.x):not(.circle):hover::after {
+    font-size: calc(40vw / 4);
+  }
+
+  /* Board is circle */
+  #ticTacToe #board.circle .cell:not(.x):not(.circle):hover::after {
+    font-size: calc(40vw / 4);
+  }
+
+  /* Message */
+  .messageBox .content {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+  }
+}
